@@ -88,7 +88,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ico277 = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "libvirt" "kvm" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
       prismlauncher-qt5
@@ -96,6 +96,7 @@
       revolt-desktop
       vscodium
       discover
+      vlc
     ];
   };
 
@@ -113,6 +114,7 @@
     htop
     libsForQt5.xdg-desktop-portal-kde
     pulseaudio
+    virt-manager
   ];
 
   # debloat plasma
@@ -123,7 +125,9 @@
     konsole
   ];
 
-
+  # KVM
+  virtualisation.libvirtd.enable = true;
+  boot.extraModprobeConfig = "options kvm_amd";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
