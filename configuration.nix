@@ -12,6 +12,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # kernel
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
   # Use grub
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
